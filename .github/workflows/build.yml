@@ -16,9 +16,10 @@ jobs:
     - name: Setup MSBuild
       uses: microsoft/setup-msbuild@v2
 
-    - name: Install .NET Framework 4.5 Developer Pack
+    # تغییر این بخش به 4.8 چون 4.5 دیگر موجود نیست
+    - name: Install .NET Framework 4.8 Developer Pack
       run: |
-        choco install netfx-4.5-devpack -y
+        choco install netfx-4.8-devpack -y
 
     - name: Restore NuGet packages
       run: nuget restore LumberRacer.sln
