@@ -1,0 +1,27 @@
+name: Build LumberRacer EXE
+
+on:
+  push:
+    branches: [ "main" ]
+  workflow_dispatch:
+
+jobs:
+  build:
+    runs-on: windows-latest
+
+    steps:
+    - name: Checkout source
+      uses: actions/checkout@v4
+
+    - name: Setup MSBuild
+      uses: microsoft/setup-msbuild@v2
+
+    - name: Build solution
+      run: msbuild LumberRacer.sln /p:Configuration=Release
+
+    - name: Upload EXE
+      uses: actions/upload-artifact@v4
+      with:
+        name: LumberRacer-exe
+        path: |
+          **/bin/Release/*.exe
