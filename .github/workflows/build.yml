@@ -16,15 +16,15 @@ jobs:
     - name: Setup MSBuild
       uses: microsoft/setup-msbuild@v2
 
-    - name: Install .NET Framework Developer Pack
+    - name: Install .NET Framework 4.5 Developer Pack
       run: |
-        choco install netfx-4.8-devpack -y
+        choco install netfx-4.5-devpack -y
 
     - name: Restore NuGet packages
       run: nuget restore LumberRacer.sln
 
     - name: Build solution
-      run: msbuild LumberRacer.sln /p:Configuration=Release
+      run: msbuild LumberRacer.sln /p:Configuration=Release /p:Platform="Any CPU"
 
     - name: Upload EXE
       uses: actions/upload-artifact@v4
